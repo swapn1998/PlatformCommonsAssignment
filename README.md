@@ -40,4 +40,4 @@ http://localhost:8886/swagger-ui/
 
 # ER DIAGRAM OF Student Management System
 
-![ER Diagram of Plant Nursery Project]()
+![ER Diagram of Plant Nursery Project](https://user-images.githubusercontent.com/101391604/208732619-02a71b25-c4ac-4437-a973-0f230e8ea7f9.jpg)
