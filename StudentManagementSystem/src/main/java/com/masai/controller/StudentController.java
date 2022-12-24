@@ -33,7 +33,7 @@ public class StudentController {
 	
 	//STUDENT UPDATE SELF DETAILS-->
 	
-	@PutMapping("/updatestudent")
+	@PutMapping("/students/updatestudent")
 	public ResponseEntity<Student> updateStudentHandler(@RequestBody StudentDTO studentDTO) throws StudentException{
 		Student updatedStudent=  studentService.updateDetails(studentDTO);
 		
@@ -43,7 +43,7 @@ public class StudentController {
 	
 	//STUDENT GET COURSE LIST ASSIGNED TO HIM/HER-->
 	
-	@GetMapping("/courses")
+	@GetMapping("/students/courses")
 	public ResponseEntity<List<Course>> coursesAssignedToStudentHandler(@RequestHeader ("id") Integer id, @RequestHeader ("dob") String dob) throws StudentException, CourseException{
 		
 		LocalDate dateOfBirth= LocalDate.parse(dob);
@@ -56,7 +56,7 @@ public class StudentController {
 	
 	//STUDENT LEAVE A COURSE-->
 	
-	@DeleteMapping("/removecourse/{courseId}")
+	@DeleteMapping("/students/removecourse/{courseId}")
 	public ResponseEntity<List<Course>> removecoursfromAssignedStudentHandler(@PathVariable Integer courseId,@RequestHeader ("id") Integer id, @RequestHeader ("dob") String dob) throws StudentException, CourseException{
 		
 		LocalDate dateOfBirth= LocalDate.parse(dob);

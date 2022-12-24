@@ -27,4 +27,18 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		return NoOpPasswordEncoder.getInstance();
 	}
 
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		
+		http
+		.csrf().disable()
+		.authorizeRequests()
+		.antMatchers("/admin/register").hasRole("ADMIN") 
+		.antMatchers("/students/**").permitAll()
+		.anyRequest()
+		.authenticated()
+		.and()
+		.formLogin();
+	}
+
 } 

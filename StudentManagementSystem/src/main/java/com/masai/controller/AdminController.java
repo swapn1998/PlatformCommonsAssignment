@@ -47,7 +47,7 @@ public class AdminController {
 	
 	//ADMIN SIGNUP-->
 	
-	@PostMapping("/register")
+	@PostMapping("/admin/register")
 	public ResponseEntity<AdminSignupData> registerAdminHandler(@Valid @RequestBody AdminSignupData adminSignupData) throws SignUpException{
 		AdminSignupData registereddata= adminSignupService.createAdmin(adminSignupData);
 		
@@ -57,7 +57,7 @@ public class AdminController {
 	
 	//ADMIN LOGIN-->
 	
-	@PostMapping("/login")
+	@PostMapping("/admin/login")
 	public ResponseEntity<CurrentUserSession> loginAdminHandler(@Valid @RequestBody AdminLoginDTO adminLoginDTO) throws LogInException{
 		CurrentUserSession currentUserSession= adminLoginService.loginAdmin(adminLoginDTO);
 		
@@ -67,7 +67,7 @@ public class AdminController {
 	
 	//ADMIN LOGOUT-->
 	
-	@DeleteMapping("/logout")
+	@DeleteMapping("/admin/logout")
 	public ResponseEntity<String> logoutAdminHandler(@RequestHeader ("key") String key) throws LogInException{
 		String message= adminLoginService.logoutAdmin(key);
 		
@@ -77,7 +77,7 @@ public class AdminController {
 	
 	//ADMIN ADMIT A STUDENT-->
 	
-	@PostMapping("/admitstudent")
+	@PostMapping("/admin/admitstudent")
 	public ResponseEntity<Student> registerStudentHandler(@Valid @RequestBody Student student, @RequestHeader("key") String key) throws StudentException, LogInException{
 		Student registeredStudent= studentService.addStudent(student, key);
 		
@@ -88,7 +88,7 @@ public class AdminController {
       //ADMIN UPLOAD COURSE-->
 	
 	
-	@PostMapping("/uploadcourse")
+	@PostMapping("/admin/uploadcourse")
 	public ResponseEntity<Course> registerCourseHandler(@Valid @RequestBody Course course, @RequestHeader("key") String key) throws LogInException, CourseException{
 		Course registeredCourse= courseService.addCourse(course, key);
 		
@@ -98,7 +98,7 @@ public class AdminController {
 	
 	//ADMIN ASSIGN COURSE TO STUDENT-->
 	
-	@PostMapping("/addcoursetostudent/{cId}/{sId}")
+	@PostMapping("/admin/addcoursetostudent/{cId}/{sId}")
 	public ResponseEntity<List<Course>> addCourseToStudentHandler(@PathVariable Integer cId,@PathVariable Integer sId, @RequestHeader("key") String key) throws StudentException, LogInException, CourseException{
 		List<Course> courselist= courseService.assignCourseToStudent(cId, sId, key);
 		
@@ -109,7 +109,7 @@ public class AdminController {
 	
 	//ADMIN SEARCH STUDENTS BY NAME-->
 	
-	@GetMapping("/studentsbyname/{name}")
+	@GetMapping("/admin/studentsbyname/{name}")
 	public ResponseEntity<Map<String, Object>> studentsByNameHandler(@PathVariable String name, @RequestHeader("key") String key,@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) throws StudentException, LogInException{
 		Map<String, Object> studentPage= studentService.getStudentsByName(page, size, name, key);
 		
@@ -120,7 +120,7 @@ public class AdminController {
 	
 	//ADMIN SEARCH STUDENTS BY COURSENAME
 	
-	@GetMapping("/studentsbycourse/{Cname}")
+	@GetMapping("/admin/studentsbycourse/{Cname}")
 	public ResponseEntity<List<Student>> studentsByCourseHandler(@PathVariable String Cname, @RequestHeader("key") String key) throws StudentException, LogInException, CourseException{
 		List<Student> studentList= studentService.getStudentsByCourseName(Cname, key);
 		
